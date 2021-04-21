@@ -1,0 +1,22 @@
+{
+  "name": "lolstats",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thaophan1/LoLStats.git"
+  },
+  "author": "Thao Phan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/thaophan1/LoLStats/issues"
+  },
+  "homepage": "https://github.com/thaophan1/LoLStats#readme",
+  "dependencies": {
+    "discord.js": "^12.5.3"
+  }
+}
