@@ -12,9 +12,10 @@ async function LookUp(region, name) {
     const rankInfo = await getRank(defaultURL, summoner.id)
     const matches = await getMatchHistory(defaultURL, summoner.accountId)
 
-    console.log(summoner)
-    console.log(rankInfo)
-    console.log(matches)
+    let matchHistory = []
+    for (let i = 0; i < matches.length; i++) {
+        matchHistory.push(await getMatchInfo(defaultURL, matches[i].gameId, name))
+    }
 }
 
 async function getSummoner(defaultURL, name) {
@@ -50,13 +51,57 @@ async function getMatchHistory(defaultURL, accountId) {
     let matchHistory = []
     for (let i = 0; i < json.matches.length; i++) {
         tempJSON = {
-            role: json.matches[i].role,
-            lane: json.matches[i].lane
+            gameId: json.matches[i].gameId,
         }
-        matchHistory.push(tempJSON)
+        if (json.matches[i].queue >= 400 && json.matches[i].queue <= 440)
+            matchHistory.push(tempJSON)
+        if (matchHistory.length > 19)
+            break
     }
 
     return matchHistory
+}
+
+async function getMatchInfo(defaultURL, matchId, name) {
+    const URL = defaultURL + `match/v4/matches/${matchId}?api_key=${credentials.api_key
+    }`;
+
+    // response is a JSON object
+    const response = await fetch(URL)
+    const json = await response.json()
+
+    let participantId = null
+    let player = null
+    let playerStats = {
+        champion: 0,
+        win: null,
+        role: "",
+        lane: "",
+        kills: 0,
+        deaths: 0,
+        assists: 0
+    }
+
+    // if (json.gameType != "MATCHED_GAME") return null
+
+    for (let i = 0; i < json.participantIdentities.length; i++) {
+        const participant = json.participantIdentities[i]
+        if (participant.player.summonerName.toLowerCase() === name) {
+            participantId = participant.participantId - 1
+            break
+        }
+    }
+
+    player = json.participants[participantId]
+    playerStats.champion = player.championId
+    playerStats.win = player.stats.win
+    playerStats.role = player.timeline.role
+    playerStats.lane = player.timeline.lane
+    playerStats.kills = player.stats.kills
+    playerStats.deaths = player.stats.deaths
+    playerStats.assists = player.stats.assists
+
+    return playerStats
 }
 
 module.exports = { LookUp };
