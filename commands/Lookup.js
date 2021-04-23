@@ -16,6 +16,14 @@ async function LookUp(region, name) {
     for (let i = 0; i < matches.length; i++) {
         matchHistory.push(await getMatchInfo(defaultURL, matches[i].gameId, name))
     }
+
+    const playerInfo = {
+        summoner: summoner,
+        rankInfo: rankInfo,
+        matchHistory: matchHistory
+    }
+
+    return playerInfo
 }
 
 async function getSummoner(defaultURL, name) {
