@@ -2,6 +2,7 @@ const Discord = require("discord.js")
 const credentials = require("./credentials.json")
 const LookUp = require("./commands/Lookup")
 const regions = require("./regions.json")
+const champions = require("./champions")
 
 const client = new Discord.Client()
 const prefix = "-"
