@@ -7,7 +7,7 @@ const client = new Discord.Client()
 const prefix = "-"
 
 client.once("ready", () => {
-    console.log("LoLStats is online!")
+    console.log("Scuttle is online!")
 })
 
 client.on("message", message => {
