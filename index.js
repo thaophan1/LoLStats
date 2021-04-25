@@ -3,6 +3,7 @@ const credentials = require("./credentials.json")
 const LookUp = require("./commands/Lookup")
 const regions = require("./regions.json")
 const champions = require("./champions")
+const stats = require("./stats")
 
 const client = new Discord.Client()
 const prefix = "-"
@@ -30,8 +31,14 @@ client.on("message", message => {
             message.channel.send(`${region} is not a valid region`)
             return
         }
-        LookUp.LookUp(region, args.join(" "))
-        message.channel.send(`Looking up ${args.join(" ")}`)
+
+        const getPlayerInfo = async () => {
+            let playerInfo = await LookUp.LookUp(region, args.join(" "))
+            playerStats = stats.getPlayerStats(playerInfo.matchHistory)
+            console.log(playerStats)
+        }
+
+        getPlayerInfo()
     }
 })
 

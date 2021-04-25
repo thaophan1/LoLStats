@@ -168,6 +168,8 @@ function getPlayerStats(matchHistory) {
         champion.deaths /= champion.games
         champion.assists /= champion.games
     }
+
+    return result
 }
 
 module.exports = { getPlayerStats }
