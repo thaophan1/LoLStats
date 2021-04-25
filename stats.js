@@ -168,9 +168,6 @@ function getPlayerStats(matchHistory) {
         champion.deaths /= champion.games
         champion.assists /= champion.games
     }
-
-    console.log(championsMap)
-    console.log(result)
 }
 
 module.exports = { getPlayerStats }
