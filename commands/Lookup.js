@@ -9,6 +9,7 @@ async function LookUp(region, name) {
     defaultURL = `https://${region}${num == null ? "" : num
         }.api.riotgames.com/lol/`
     const summoner = await getSummoner(defaultURL, name)
+    if (summoner == null) return null
     const rankInfo = await getRank(defaultURL, summoner.id)
     const matches = await getMatchHistory(defaultURL, summoner.accountId)
 
@@ -55,6 +56,7 @@ async function getMatchHistory(defaultURL, accountId) {
     // response is an array of JSON objects
     const response = await fetch(URL)
     const json = await response.json()
+    if (!json) return null
 
     let matchHistory = []
     for (let i = 0; i < json.matches.length; i++) {
