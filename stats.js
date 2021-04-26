@@ -87,7 +87,6 @@ function getPlayerStats(matchHistory) {
     roles[primaryPos] = 0
     const secondary = Math.max(...roles)
     const secondaryPos = roles.findIndex(element => element === secondary)
-    console.log(secondaryPos)
 
     switch(primaryPos) {
         case 0:
