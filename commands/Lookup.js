@@ -35,6 +35,10 @@ async function getSummoner(defaultURL, name) {
 
 	// response is a single JSON object
 	const response = await fetch(URL)
+	if (response.status != 200) {
+		console.log(`getSummoner failed with response status ${response.status}`)
+		return null
+	}
 	const json = await response.json()
 
 	return json
@@ -47,6 +51,10 @@ async function getRank(defaultURL, summonerId) {
 
 	// response is an array of one JSON object
 	const response = await fetch(URL)
+	if (response.status != 200) {
+		console.log(`getRank failed with response status ${response.status}`)
+		return null
+	}
 	const json = await response.json()
 
 	return json[0]
@@ -59,6 +67,12 @@ async function getMatchHistory(defaultURL, accountId) {
 
 	// response is an array of JSON objects
 	const response = await fetch(URL)
+	if (response.status != 200) {
+		console.log(
+			`getMatchHistory failed with response status ${response.status}`
+		)
+		return null
+	}
 	const json = await response.json()
 	if (!json) return null
 
@@ -81,6 +95,10 @@ async function getMatchInfo(defaultURL, matchId, name) {
 
 	// response is a JSON object
 	const response = await fetch(URL)
+	if (response.status != 200) {
+		console.log(`getMatchInfo failed with response status ${response.status}`)
+		return null
+	}
 	const json = await response.json()
 
 	let participantId = null
