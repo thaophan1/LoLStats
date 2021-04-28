@@ -5,7 +5,7 @@ function LookUpMessage(region, info, stats) {
 	if (stats == null) {
 		const embed = new Discord.MessageEmbed()
 			.setTitle(`${summoner.name} \tLevel: ${summoner.summonerLevel}`)
-			.setColor('RANDOM')
+			.setColor('ORANGE')
 			.setDescription('Player has no matches played')
 	}
 
@@ -21,8 +21,10 @@ function LookUpMessage(region, info, stats) {
 
 	const embed = new Discord.MessageEmbed()
 		.setTitle(`${summoner.name} \tLevel: ${summoner.summonerLevel}`)
-		.setColor('RANDOM')
-		.setURL(`https://${region}.op.gg/summoner/userName=${summoner.name}`)
+		.setColor('ORANGE')
+		.setURL(
+			`https://${region}.op.gg/summoner/userName=${encodeURI(summoner.name)}`
+		)
 		.addFields(
 			{
 				name: 'Rank',
