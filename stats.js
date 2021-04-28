@@ -1,4 +1,6 @@
 function getPlayerStats(matchHistory) {
+	if (matchHistory.length == 0) return null
+
 	let result = {
 		kills: 0.0,
 		deaths: 0.0,
