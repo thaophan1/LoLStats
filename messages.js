@@ -12,8 +12,12 @@ function LookUpMessage(region, info, stats) {
 	const summoner = info.summoner
 	const rankInfo = info.rankInfo
 	const topChampions = stats.champions
-	let ranked = true
-	if (rankInfo == undefined) ranked = false
+	let ranked = false
+	let WR = 0
+	if (rankInfo != undefined) {
+		ranked = true
+		WR = ((rankInfo.wins / (rankInfo.losses + rankInfo.wins)) * 100).toFixed(2)
+	}
 
 	const embed = new Discord.MessageEmbed()
 		.setTitle(`${summoner.name} \tLevel: ${summoner.summonerLevel}`)
@@ -31,14 +35,7 @@ function LookUpMessage(region, info, stats) {
 			},
 			{
 				name: 'Win Rate',
-				value: `${
-					ranked
-						? `${(
-								(rankInfo.wins / (rankInfo.losses + rankInfo.wins)) *
-								100
-						  ).toFixed(2)}%`
-						: 'No Ranked Games'
-				}`,
+				value: `${ranked ? `${WR}%` : 'No Ranked Games'}`,
 				inline: true,
 			},
 			{
