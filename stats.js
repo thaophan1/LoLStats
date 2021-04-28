@@ -154,7 +154,7 @@ function getPlayerStats(matchHistory) {
 		const match = matchHistory[i]
 		for (let champion of result.champions)
 			if (match.champion === champion.id) {
-				champion.wins += 1
+				if (match.win === true) champion.wins += 1
 				champion.kills += match.kills
 				champion.deaths += match.deaths
 				champion.assists += match.assists
