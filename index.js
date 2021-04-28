@@ -34,7 +34,7 @@ client.on('message', (message) => {
 			let playerInfo = await LookUp.LookUp(region, args.join(' '))
 			if (playerInfo == null) return
 			playerStats = stats.getPlayerStats(playerInfo.matchHistory)
-			const embed = messages.LookUpMessage(playerInfo, playerStats)
+			const embed = messages.LookUpMessage(region, playerInfo, playerStats)
 			message.channel.send(embed)
 		}
 
