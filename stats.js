@@ -40,6 +40,7 @@ function getPlayerStats(matchHistory) {
 
 	for (let i = 0; i < matchHistory.length; i++) {
 		const match = matchHistory[i]
+		if (!match) return null
 
 		// Calculating KDA
 		result.kills += match.kills

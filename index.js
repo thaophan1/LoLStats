@@ -16,7 +16,10 @@ client.once('ready', () => {
 client.on('message', (message) => {
 	if (!message.content.startsWith(prefix) || message.author.bot) return
 
-	const args = message.content.slice(prefix.length).split(' ')
+	const args = message.content
+		.toLocaleLowerCase()
+		.slice(prefix.length)
+		.split(' ')
 	const command = args.shift().toLowerCase()
 
 	if (command === 'l' || command === 'lookup') {
@@ -38,6 +41,7 @@ client.on('message', (message) => {
 			message.channel.send(embed)
 		}
 
+		console.log('calling getPlayerInfo')
 		getPlayerInfo()
 	}
 })
