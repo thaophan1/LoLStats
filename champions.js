@@ -1,5 +1,7 @@
 function getChampByIDs(id) {
 	switch (id) {
+		case 0:
+			return 'N/A'
 		case 1:
 			return 'Annie'
 		case 2:
