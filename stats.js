@@ -10,7 +10,8 @@ function getPlayerStats(matchHistory) {
 		champions: [
 			{
 				id: 0,
-				wins: 0.0,
+				wins: 0,
+				losses: 0,
 				games: 0,
 				kills: 0,
 				deaths: 0,
@@ -18,7 +19,8 @@ function getPlayerStats(matchHistory) {
 			},
 			{
 				id: 0,
-				wins: 0.0,
+				wins: 0,
+				losses: 0,
 				games: 0,
 				kills: 0,
 				deaths: 0,
@@ -26,7 +28,8 @@ function getPlayerStats(matchHistory) {
 			},
 			{
 				id: 0,
-				wins: 0.0,
+				wins: 0,
+				losses: 0,
 				games: 0,
 				kills: 0,
 				deaths: 0,
@@ -157,7 +160,11 @@ function getPlayerStats(matchHistory) {
 		const match = matchHistory[i]
 		for (let champion of result.champions)
 			if (match.champion === champion.id) {
-				if (match.win === true) champion.wins += 1
+				if (match.win === true) {
+					champion.wins += 1
+				} else {
+					champion.losses += 1
+				}
 				champion.kills += match.kills
 				champion.deaths += match.deaths
 				champion.assists += match.assists
@@ -165,7 +172,6 @@ function getPlayerStats(matchHistory) {
 	}
 
 	for (let champion of result.champions) {
-		champion.wins = (champion.wins / champion.games) * 100
 		champion.kills /= champion.games
 		champion.deaths /= champion.games
 		champion.assists /= champion.games

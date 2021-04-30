@@ -67,7 +67,12 @@ function LookUpMessage(region, info, stats) {
 				name: `${champs.getChampByIDs(topChampions[0].id)}`,
 				value: `${
 					topChampions[0].id > 0
-						? `**Win Rate:** ${topChampions[0].wins.toFixed(0)}%
+						? `${topChampions[0].games}G ${topChampions[0].wins}W ${
+								topChampions[0].losses
+						  }L
+						**Win Rate:** ${((topChampions[0].wins / topChampions[0].games) * 100).toFixed(
+							0
+						)}%
 						**KDA:** ${topChampions[0].kills.toFixed(2)}/${topChampions[0].deaths.toFixed(
 								2
 						  )}/${topChampions[0].assists.toFixed(2)}`
@@ -79,7 +84,12 @@ function LookUpMessage(region, info, stats) {
 				name: `${champs.getChampByIDs(topChampions[1].id)}`,
 				value: `${
 					topChampions[1].id > 0
-						? `**Win Rate:** ${topChampions[1].wins.toFixed(0)}%
+						? `${topChampions[1].games}G ${topChampions[1].wins}W ${
+								topChampions[1].losses
+						  }L
+						**Win Rate:** ${((topChampions[1].wins / topChampions[1].games) * 100).toFixed(
+							0
+						)}%
 						**KDA:** ${topChampions[1].kills.toFixed(2)}/${topChampions[1].deaths.toFixed(
 								2
 						  )}/${topChampions[1].assists.toFixed(2)}`
@@ -91,7 +101,12 @@ function LookUpMessage(region, info, stats) {
 				name: `${champs.getChampByIDs(topChampions[2].id)}`,
 				value: `${
 					topChampions[2].id > 0
-						? `**Win Rate:** ${topChampions[2].wins.toFixed(0)}%
+						? `${topChampions[2].games}G ${topChampions[2].wins}W ${
+								topChampions[2].losses
+						  }L
+						**Win Rate:** ${((topChampions[2].wins / topChampions[2].games) * 100).toFixed(
+							0
+						)}%
 						**KDA:** ${topChampions[2].kills.toFixed(2)}/${topChampions[2].deaths.toFixed(
 								2
 						  )}/${topChampions[2].assists.toFixed(2)}`
