@@ -64,7 +64,7 @@ function getPlayerStats(matchHistory) {
 				roles[0]++
 				break
 			case 'JUNGLE':
-				roels[1]++
+				roles[1]++
 				break
 			case 'MID':
 			case 'MIDDLE':

@@ -64,7 +64,11 @@ function LookUpMessage(region, info, stats) {
 				inline: false,
 			},
 			{
-				name: `${champs.getChampByIDs(topChampions[0].id)}`,
+				name: `${
+					topChampions[0].id > 0
+						? champs.getChampByIDs(topChampions[0].id)
+						: '\u200B'
+				}`,
 				value: `${
 					topChampions[0].id > 0
 						? `${topChampions[0].games}G ${topChampions[0].wins}W ${
@@ -75,13 +79,21 @@ function LookUpMessage(region, info, stats) {
 						)}%
 						**KDA:** ${topChampions[0].kills.toFixed(2)}/${topChampions[0].deaths.toFixed(
 								2
-						  )}/${topChampions[0].assists.toFixed(2)}`
+						  )}/${topChampions[0].assists.toFixed(2)}
+						[*Blitz*](https://champion.gg/champion/${champs
+							.getChampByIDs(topChampions[0].id)
+							.split(/\W+/)
+							.join('')})`
 						: '\u200B'
 				}`,
 				inline: true,
 			},
 			{
-				name: `${champs.getChampByIDs(topChampions[1].id)}`,
+				name: `${
+					topChampions[1].id > 0
+						? champs.getChampByIDs(topChampions[1].id)
+						: '\u200B'
+				}`,
 				value: `${
 					topChampions[1].id > 0
 						? `${topChampions[1].games}G ${topChampions[1].wins}W ${
@@ -92,13 +104,21 @@ function LookUpMessage(region, info, stats) {
 						)}%
 						**KDA:** ${topChampions[1].kills.toFixed(2)}/${topChampions[1].deaths.toFixed(
 								2
-						  )}/${topChampions[1].assists.toFixed(2)}`
+						  )}/${topChampions[1].assists.toFixed(2)}
+						[*Blitz*](https://champion.gg/champion/${champs
+							.getChampByIDs(topChampions[1].id)
+							.split(/\W+/)
+							.join('')})`
 						: '\u200B'
 				}`,
 				inline: true,
 			},
 			{
-				name: `${champs.getChampByIDs(topChampions[2].id)}`,
+				name: `${
+					topChampions[2].id > 0
+						? champs.getChampByIDs(topChampions[2].id)
+						: '\u200B'
+				}`,
 				value: `${
 					topChampions[2].id > 0
 						? `${topChampions[2].games}G ${topChampions[2].wins}W ${
@@ -109,7 +129,11 @@ function LookUpMessage(region, info, stats) {
 						)}%
 						**KDA:** ${topChampions[2].kills.toFixed(2)}/${topChampions[2].deaths.toFixed(
 								2
-						  )}/${topChampions[2].assists.toFixed(2)}`
+						  )}/${topChampions[2].assists.toFixed(2)}
+						[*Blitz*](https://champion.gg/champion/${champs
+							.getChampByIDs(topChampions[2].id)
+							.split(/\W+/)
+							.join('')})`
 						: '\u200B'
 				}`,
 				inline: true,
