@@ -114,12 +114,10 @@ async function getMatchInfo(defaultURL, matchId, name) {
 		deaths: 0,
 		assists: 0,
 	}
-
-	// if (json.gameType != "MATCHED_GAME") return null
-
+	console.log(matchId, name.split(' ').join(''))
 	for (let i = 0; i < json.participantIdentities.length; i++) {
 		const participant = json.participantIdentities[i]
-		if (participant.player.summonerName.toLowerCase() === name.split(' ').join('')) {
+		if (participant.player.summonerName.toLowerCase() === name) {
 			participantId = participant.participantId - 1
 			break
 		}
