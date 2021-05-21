@@ -9,7 +9,7 @@ function LookUpMessage(region, info, stats) {
 		const embed = new Discord.MessageEmbed()
 			.setTitle(`${summoner.name} \tLevel: ${summoner.summonerLevel}`)
 			.setColor('DARK_GREEN')
-			.setDescription('Player has no matches played')
+			.setDescription('Player has no matches played or name entered was wrong')
 
 		return embed
 	}

@@ -35,7 +35,11 @@ client.on('message', (message) => {
 
 		const getPlayerInfo = async () => {
 			let playerInfo = await LookUp.LookUp(region, args.join(' '))
-			if (playerInfo == null) return
+			if (playerInfo == null) {
+				message.channel.send(
+					'Summoner not found, check the name and region and try again'
+				)
+			}
 			playerStats = stats.getPlayerStats(playerInfo.matchHistory)
 			const embed = messages.LookUpMessage(region, playerInfo, playerStats)
 			message.channel.send(embed)

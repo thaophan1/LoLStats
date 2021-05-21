@@ -114,7 +114,7 @@ async function getMatchInfo(defaultURL, matchId, name) {
 		deaths: 0,
 		assists: 0,
 	}
-	console.log(matchId, name.split(' ').join(''))
+
 	for (let i = 0; i < json.participantIdentities.length; i++) {
 		const participant = json.participantIdentities[i]
 		if (participant.player.summonerName.toLowerCase() === name) {
@@ -122,6 +122,8 @@ async function getMatchInfo(defaultURL, matchId, name) {
 			break
 		}
 	}
+
+	if (participantId === null) return null
 
 	player = json.participants[participantId]
 	playerStats.champion = player.championId
