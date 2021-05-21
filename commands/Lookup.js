@@ -13,7 +13,6 @@ async function LookUp(region, name) {
 	if (summoner == null) return null
 	const rankInfo = await getRank(defaultURL, summoner.id)
 	const matches = await getMatchHistory(defaultURL, summoner.accountId)
-	console.log(matches)
 
 	let matchHistory = []
 	for (let i = 0; i < matches.length; i++) {
@@ -28,7 +27,6 @@ async function LookUp(region, name) {
 		matchHistory: matchHistory,
 	}
 
-	// console.log(playerInfo.matchHistory)
 	return playerInfo
 }
 
@@ -121,12 +119,12 @@ async function getMatchInfo(defaultURL, matchId, name) {
 
 	for (let i = 0; i < json.participantIdentities.length; i++) {
 		const participant = json.participantIdentities[i]
-		if (participant.player.summonerName.toLowerCase() === name) {
+		if (participant.player.summonerName.toLowerCase() === name.split(' ').join('')) {
 			participantId = participant.participantId - 1
 			break
 		}
 	}
-	console.log(name)
+
 	player = json.participants[participantId]
 	playerStats.champion = player.championId
 	playerStats.win = player.stats.win
