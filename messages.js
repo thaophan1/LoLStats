@@ -38,7 +38,7 @@ function LookUpMessage(region, info, stats) {
 						? `**${rankInfo.tier} ${rankInfo.rank}**
 						**${rankInfo.leaguePoints}** LP/ ${rankInfo.wins}W ${rankInfo.losses}L 
 						**Win Rate:** ${WR}% 
-						**KDA:** ${stats.kills}/${stats.deaths}/${stats.assists}
+						**KDA:** ${stats.kills.toFixed(2)}/${stats.deaths.toFixed(2)}/${stats.assists.toFixed(2)}
 						`
 						: 'Unranked'
 				}`,

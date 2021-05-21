@@ -13,11 +13,14 @@ async function LookUp(region, name) {
 	if (summoner == null) return null
 	const rankInfo = await getRank(defaultURL, summoner.id)
 	const matches = await getMatchHistory(defaultURL, summoner.accountId)
+	console.log(matches)
 
 	let matchHistory = []
 	for (let i = 0; i < matches.length; i++) {
-		matchHistory.push(await getMatchInfo(defaultURL, matches[i].gameId, name))
+		matchHistory.push(getMatchInfo(defaultURL, matches[i].gameId, name))
 	}
+
+	matchHistory = await Promise.all(matchHistory)
 
 	const playerInfo = {
 		summoner: summoner,
@@ -25,6 +28,7 @@ async function LookUp(region, name) {
 		matchHistory: matchHistory,
 	}
 
+	// console.log(playerInfo.matchHistory)
 	return playerInfo
 }
 
@@ -71,10 +75,10 @@ async function getMatchHistory(defaultURL, accountId) {
 		console.log(
 			`getMatchHistory failed with response status ${response.status}`
 		)
-		return null
+		return []
 	}
 	const json = await response.json()
-	if (!json) return null
+	if (!json) return []
 
 	let matchHistory = []
 	for (let i = 0; i < json.matches.length; i++) {
@@ -83,7 +87,7 @@ async function getMatchHistory(defaultURL, accountId) {
 		}
 		if (json.matches[i].queue >= 400 && json.matches[i].queue <= 440)
 			matchHistory.push(tempJSON)
-		if (matchHistory.length > 19) break
+		if (matchHistory.length > 14) break
 	}
 
 	return matchHistory
@@ -122,7 +126,7 @@ async function getMatchInfo(defaultURL, matchId, name) {
 			break
 		}
 	}
-
+	console.log(name)
 	player = json.participants[participantId]
 	playerStats.champion = player.championId
 	playerStats.win = player.stats.win
